@@ -1,8 +1,8 @@
 #!/bin/bash
 
-$install_dir="$HOME/.duckduckgoog"
-$port=""
-$search_engine=""
+install_dir="$HOME/.duckduckgoog"
+port=""
+search_engine=""
 
 echo "Cloning git repo..."
 git clone https://github.com/evanrelf/duckduckgoog.git $install_dir
