@@ -11,7 +11,7 @@ npm install
 
 # Install LaunchAgent
 rm -f ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
-ln -s ./com.evanrelf.DuckDuckGoog.plist ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
+ln -s $PWD/com.evanrelf.DuckDuckGoog.plist ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
 # mv com.evanrelf.DuckDuckGoog.plist ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
 
 # Start LaunchAgent
