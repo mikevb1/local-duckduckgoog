@@ -2,8 +2,6 @@
 
 > Use DuckDuckGo's powerful [!bangs](https://duckduckgo.com/bang) without sacrificing Google's search results, with the speed and privacy of a locally-hosted server!
 
-Instead of sending your searches to a remote server, a local web server is started on your machine when you login to respond to search queries instantaneously.
-
 Instead of sending searches to a slow remote server, a local web server handles requests instantaneously. This improves loading times in your browser, and keeps your searches private.
 
 This is a stripped-down fork of [@mikecrittenden's original project](https://github.com/mikecrittenden/duckduckgoog), without the user-facing webpages.
