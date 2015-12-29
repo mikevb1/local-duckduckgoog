@@ -32,7 +32,7 @@
 
     -->
 		<key>PORT</key>
-    <string></string>
+    <string>REPLACE_PORT</string>
 
     <!--
          ................. WANT TO USE A CUSTOM SEARCH ENGINE? .................
@@ -69,18 +69,18 @@
          .......................................................................
     -->
 		<key>SEARCH_ENGINE</key>
-    <string></string>
+    <string>REPLACE_SEARCH_ENGINE</string>
 
 	</dict>
 	<key>KeepAlive</key>
 	<true/>
 	<key>Label</key>
-	<string>com.evanrelf.DuckDuckGoog</string>
+	<string>local.duckduckgoog</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/bin/bash</string>
 		<string>-c</string>
-		<string>./usr/local/bin/node REPLACEME/app.js</string>
+		<string>./usr/local/bin/node REPLACE_INSTALL_DIR/app.js</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

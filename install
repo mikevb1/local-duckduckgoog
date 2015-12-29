@@ -1,6 +1,8 @@
 #!/bin/bash
 
-$install_dir="~/.duckduckgoog"
+$install_dir="$HOME/.duckduckgoog"
+$port=""
+$search_engine=""
 
 echo "Cloning git repo..."
 git clone https://github.com/evanrelf/duckduckgoog.git $install_dir
@@ -10,12 +12,18 @@ cd $install_dir
 echo "Installing Node modules..."
 npm install
 
-echo "Installing LaunchAgent..."
-rm -f ~/Library/LaunchAgents/local.duckduckgoog.plist
-sed "s REPLACEME $install_dir " < LaunchAgent.plist > ~/Library/LaunchAgents/local.duckduckgoog.plist
+if [ -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist ]; then
+  rm -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist
+fi
+
+echo "Customizing LaunchAgent..."
+sed -e "s REPLACE_INSTALL_DIR $install_dir " \
+    -e "s REPLACE_PORT $port " \
+    -e "s REPLACE_SEARCH_ENGINE $search_engine " \
+    < LaunchAgent.plist > $HOME/Library/LaunchAgents/local.duckduckgoog.plist
 
 echo "Starting LaunchAgent..."
-launchctl load ~/Library/LaunchAgents/local.duckduckgoog.plist
+launchctl load $HOME/Library/LaunchAgents/local.duckduckgoog.plist
 launchctl start local.duckduckgoog.plist
 
 echo "Install complete"
