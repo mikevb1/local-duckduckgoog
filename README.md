@@ -32,7 +32,7 @@ curl -fL https://raw.githubusercontent.com/evanrelf/duckduckgoog/master/install 
 Searches containing a DuckDuckGo bang (e.g. `!wiki George Washington`) are sent to DuckDuckGo, otherwise they are sent to Google.
 
 ### Custom port
-If you want to configure
+The local web server can listen on a port of your choosing. Read comments in LaunchAgent .plist for configuration instructions.
 
 ### Custom search engine
-Google can be replaced with an alternate search engine of your choosing.
+Google can be replaced with a custom search engine of your choosing. Read comments in LaunchAgent .plist for configuration instructions.
