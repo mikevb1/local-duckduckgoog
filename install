@@ -1,21 +1,21 @@
 #!/bin/bash
 
-# Clone git repo
-git clone https://github.com/evanrelf/duckduckgoog.git ~/.duckduckgoog
+$install_dir="~/.duckduckgoog"
 
-# Change directory
-cd ~/.duckduckgoog
+echo "Cloning git repo..."
+git clone https://github.com/evanrelf/duckduckgoog.git $install_dir
 
-# Install Node modules
+cd $install_dir
+
+echo "Installing Node modules..."
 npm install
 
-# Install LaunchAgent
-rm -f ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
-ln -s $PWD/com.evanrelf.DuckDuckGoog.plist ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
-# mv com.evanrelf.DuckDuckGoog.plist ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
+echo "Installing LaunchAgent..."
+rm -f ~/Library/LaunchAgents/local.duckduckgoog.plist
+sed "s REPLACEME $install_dir " < LaunchAgent.plist > ~/Library/LaunchAgents/local.duckduckgoog.plist
 
-# Start LaunchAgent
-launchctl load ~/Library/LaunchAgents/com.evanrelf.DuckDuckGoog.plist
-launchctl start com.evanrelf.DuckDuckGoog.plist
+echo "Starting LaunchAgent..."
+launchctl load ~/Library/LaunchAgents/local.duckduckgoog.plist
+launchctl start local.duckduckgoog.plist
 
 echo "Install complete"
