@@ -12,14 +12,27 @@ Because I'm using Mac OS X's `launchd` to start the web server on login, this un
 
 Make sure you have Git, Node, and NPM installed.
 
-**ATTENTION:** Review the [install script](install) before running this command---you should never trust random people on the internet.
 
-```bash
+### 1. Install local server
+Review the [install script](install) before running this command---you should never trust random people on the internet.
+
+If you are comfortable with what the install script does, copy and paste the following command into your terminal to download and run it:
+
+```text
 curl -fL https://raw.githubusercontent.com/evanrelf/duckduckgoog/master/install | bash
 ```
 
-If you aren't comfortable pasting that in, just follow the commands in the install script manually.
+### 2. Add search engine to Google Chrome
+1. After running the install script, go to [evanrelf.com/duckduckgoog](http://evanrelf.com/duckduckgoog) to add the search engine to Google Chrome
+2. Copy and paste this into your URL bar to go to the search engine settings: `chrome://settings/searchEngines`
+3. Find "Local DuckDuckGoog" in the list, hover over it, and click the "Make default" button that appears on the right
 
 ## Usage
 
 Searches containing a DuckDuckGo bang (e.g. `!wiki George Washington`) are sent to DuckDuckGo, otherwise they are sent to Google.
+
+### Custom port
+If you want to configure
+
+### Custom search engine
+Google can be replaced with an alternate search engine of your choosing.
