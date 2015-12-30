@@ -1,29 +1,35 @@
 #!/bin/bash
 
+# CUSTOMIZE INSTALLATION WITH THESE VARIABLES
 install_dir="$HOME/.duckduckgoog"
-port=""
-search_engine=""
+port=""          # leave blank to use port 3000
+search_engine="" # leave blank to use Google
 
-echo "Cloning git repo..."
+echo "*** Cloning git repo..."
 git clone https://github.com/evanrelf/duckduckgoog.git $install_dir
 
 cd $install_dir
 
-echo "Installing Node modules..."
+echo "*** Installing Node modules..."
 npm install
 
 if [ -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist ]; then
   rm -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist
 fi
 
-echo "Customizing LaunchAgent..."
+echo "*** Installing LaunchAgent..."
 sed -e "s REPLACE_INSTALL_DIR $install_dir " \
     -e "s REPLACE_PORT $port " \
     -e "s REPLACE_SEARCH_ENGINE $search_engine " \
     < LaunchAgent.plist > $HOME/Library/LaunchAgents/local.duckduckgoog.plist
 
-echo "Starting LaunchAgent..."
+echo "*** Starting LaunchAgent..."
 launchctl load $HOME/Library/LaunchAgents/local.duckduckgoog.plist
 launchctl start local.duckduckgoog.plist
 
-echo "Install complete"
+sleep 1
+echo; echo
+echo "************************************************************************"
+echo "*** To complete installation, follow step 2 in the README on GitHub! ***"
+echo "************************************************************************"
+echo; echo

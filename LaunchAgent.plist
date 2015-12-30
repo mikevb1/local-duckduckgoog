@@ -4,73 +4,10 @@
 <dict>
 	<key>EnvironmentVariables</key>
 	<dict>
-    <!--
-         ...................... WANT TO USE A CUSTOM PORT? .....................
-
-         By default DuckDuckGoog's local web server is listening on port 3000,
-         however if this conflicts with another service on your computer, or
-         you just prefer a different port, it is easy to use one of your
-         choosing.
-
-         > USING A CUSTOM PORT:
-           To use a custom port, fill the marked <string> tags with the port
-           number you want.
-
-         > REVERT TO DEFAULT PORT:
-           To revert back to the default port (3000), remove all characters
-           from between the <string> tags.
-
-         NOTE: Any port number less than 1024 requires root access, so I
-         recommend sticking to something above 1024.
-
-         .......................................................................
-
-         > EXAMPLE
-           <string>1234</string>
-
-         .......................................................................
-
-    -->
 		<key>PORT</key>
     <string>REPLACE_PORT</string>
-
-    <!--
-         ................. WANT TO USE A CUSTOM SEARCH ENGINE? .................
-
-         By default any non-bang searches will be sent to Google, however you
-         can specify a custom search engine instead.
-
-         > USING A CUSTOM SEARCH ENGINE
-           To use a custom search engine, fill the marked <string> tags with
-           the URL of the search engine. Your search query will be appended to
-           the end.
-
-         > REVERT TO DEFAULT SEARCH ENGINE
-           To revert back to using Google, remove all characters from between
-           the <string> tags.
-
-         You changes will be applied the next time you log in.
-
-         .......................................................................
-
-         Here are some popular search engine URLs for your convenience:
-
-             Bing:      https://www.bing.com/search?q=
-
-             Yahoo:     https://search.yahoo.com/search?p=
-
-             Baidu:     http://www.baidu.com/s?wd=
-
-         .......................................................................
-
-         > EXAMPLE
-           <string>https://www.bing.com/search?q=</string>
-
-         .......................................................................
-    -->
 		<key>SEARCH_ENGINE</key>
     <string>REPLACE_SEARCH_ENGINE</string>
-
 	</dict>
 	<key>KeepAlive</key>
 	<true/>
