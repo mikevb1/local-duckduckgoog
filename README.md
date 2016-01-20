@@ -6,9 +6,7 @@ Use DuckDuckGo's powerful [!bangs](https://duckduckgo.com/bang) without sacrific
 
 Instead of sending searches to a slow remote server, a local web server handles requests instantaneously. This improves loading times in your browser, and keeps your searches private.
 
-This is a stripped-down fork of [@mikecrittenden's original project](https://github.com/mikecrittenden/duckduckgoog) designed for use on your local machine. I've added an install script and removed user-facing webpages, so it's just an [Express](http://expressjs.com/) web server running in the background.
-
-Because I'm using Mac OS X's `launchd` to start the web server on login, this unfortunately **doesn't work on Windows or Linux**. Future support could be added using `cron`, `systemd`, or a Windows equivalent.
+This is a stripped-down fork of [@mikecrittenden's original project](https://github.com/mikecrittenden/duckduckgoog) designed for use on your local machine. I've added an install script and removed user-facing webpages, so it's just an [Express](http://expressjs.com/) web server running in the background. There currently is no support for Windows.
 
 ## Installation
 

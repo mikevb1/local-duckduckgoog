@@ -1,10 +1,14 @@
+[Unit]
+Description=Local DuckDuckGoog
+Documentation=https://github.com/evanrelf/duckduckgoog/
+
 [Service]
 ExecStart=/usr/bin/node REPLACE_INSTALL_DIR/app.js
 Restart=always
-StandardOutput=syslog
-StandardError=syslog
 Environment=PORT=REPLACE_PORT
 Environment=SEARCH_ENGINE=REPLACE_SEARCH_ENGINE
+StandardOutput=syslog
+StandardError=syslog
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
