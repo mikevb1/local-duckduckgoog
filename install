@@ -13,19 +13,38 @@ cd $install_dir
 echo "*** Installing Node modules..."
 npm install
 
-if [ -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist ]; then
-  rm -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist
+if uname -s | grep "Darwin"; then
+  # Mac
+  if [ -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist ]; then
+    rm -f $HOME/Library/LaunchAgents/local.duckduckgoog.plist
+  fi
+
+  echo "*** Installing LaunchAgent..."
+  sed -e "s REPLACE_INSTALL_DIR $install_dir " \
+      -e "s REPLACE_PORT $port " \
+      -e "s REPLACE_SEARCH_ENGINE $search_engine " \
+      < LaunchAgent.plist > $HOME/Library/LaunchAgents/local.duckduckgoog.plist
+
+  echo "*** Starting LaunchAgent..."
+  launchctl load $HOME/Library/LaunchAgents/local.duckduckgoog.plist
+  launchctl start local.duckduckgoog.plist
+
+else
+  # Linux
+  if [ -f $HOME/.config/systemd/user/duckduckgoog.service ]; then
+    rm -f $HOME/.config/systemd/user/duckduckgoog.service
+  fi
+
+  mkdir -p $HOME/.config/systemd/user/
+
+  echo "*** Installing systemd service..."
+  sed -e "s REPLACE_INSTALL_DIR $install_dir " \
+      -e "s REPLACE_PORT $port " \
+      -e "s REPLACE_SEARCH_ENGINE $search_engine " \
+      < systemd.service > $HOME/.config/systemd/user/duckduckgoog.service
+  systemctl --user enable duckduckgoog --now
 fi
 
-echo "*** Installing LaunchAgent..."
-sed -e "s REPLACE_INSTALL_DIR $install_dir " \
-    -e "s REPLACE_PORT $port " \
-    -e "s REPLACE_SEARCH_ENGINE $search_engine " \
-    < LaunchAgent.plist > $HOME/Library/LaunchAgents/local.duckduckgoog.plist
-
-echo "*** Starting LaunchAgent..."
-launchctl load $HOME/Library/LaunchAgents/local.duckduckgoog.plist
-launchctl start local.duckduckgoog.plist
 
 sleep 1
 echo; echo

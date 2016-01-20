@@ -1,0 +1,10 @@
+[Service]
+ExecStart=/usr/bin/node REPLACE_INSTALL_DIR/app.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+Environment=PORT=REPLACE_PORT
+Environment=SEARCH_ENGINE=REPLACE_SEARCH_ENGINE
+
+[Install]
+WantedBy=multi-user.target
