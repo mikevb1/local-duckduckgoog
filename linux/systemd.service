@@ -7,8 +7,6 @@ ExecStart=/usr/bin/node REPLACE_INSTALL_DIR/app.js
 Restart=always
 Environment=PORT=REPLACE_PORT
 Environment=SEARCH_ENGINE=REPLACE_SEARCH_ENGINE
-StandardOutput=syslog
-StandardError=syslog
 
 [Install]
 WantedBy=default.target

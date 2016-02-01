@@ -23,7 +23,7 @@ if uname -s | grep "Darwin"; then
   sed -e "s REPLACE_INSTALL_DIR $install_dir " \
       -e "s REPLACE_PORT $port " \
       -e "s REPLACE_SEARCH_ENGINE $search_engine " \
-      < LaunchAgent.plist > $HOME/Library/LaunchAgents/local.duckduckgoog.plist
+      < mac/LaunchAgent.plist > $HOME/Library/LaunchAgents/local.duckduckgoog.plist
 
   echo "*** Starting LaunchAgent..."
   launchctl load $HOME/Library/LaunchAgents/local.duckduckgoog.plist
@@ -31,17 +31,19 @@ if uname -s | grep "Darwin"; then
 
 else
   # Linux
+  mkdir -p $HOME/.config/systemd/user/
+
   if [ -f $HOME/.config/systemd/user/duckduckgoog.service ]; then
     rm -f $HOME/.config/systemd/user/duckduckgoog.service
   fi
 
-  mkdir -p $HOME/.config/systemd/user/
+  mv -n linux/default.target $HOME/.config/systemd/user/default.target
 
   echo "*** Installing systemd service..."
   sed -e "s REPLACE_INSTALL_DIR $install_dir " \
       -e "s REPLACE_PORT $port " \
       -e "s REPLACE_SEARCH_ENGINE $search_engine " \
-      < systemd.service > $HOME/.config/systemd/user/duckduckgoog.service
+      < linux/systemd.service > $HOME/.config/systemd/user/duckduckgoog.service
   systemctl --user enable duckduckgoog --now
 fi
 
