@@ -1,7 +1,5 @@
-var express = require('express');
+var app  = require('express')();
 var http = require('http');
-
-var app = express();
 
 app.configure(function() {
   app.set('port', process.env.PORT || 3000);
@@ -10,8 +8,8 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-  query = req.query['q'];
-  encodedQuery = encodeURIComponent(query);
+  var query = req.query['q'];
+  var encodedQuery = encodeURIComponent(query);
 
   if (query.match(/![A-Za-z0-9]+/) ||
       query.substring(0, 2) === '! ' ||

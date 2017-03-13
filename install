@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# CUSTOMIZE INSTALLATION WITH THESE VARIABLES
+# Customize installation with these variables
 install_dir="$HOME/.duckduckgoog"
 port=""          # leave blank to use port 3000
 search_engine="" # leave blank to use Google
@@ -29,28 +29,43 @@ if uname -s | grep "Darwin"; then
   launchctl load $HOME/Library/LaunchAgents/local.duckduckgoog.plist
   launchctl start local.duckduckgoog.plist
 
-else
+elif uname -s | grep "Linux"; then
   # Linux
-  mkdir -p $HOME/.config/systemd/user/
+  if pidof systemd; then
+    mkdir -p $HOME/.config/systemd/user/
 
-  if [ -f $HOME/.config/systemd/user/duckduckgoog.service ]; then
-    rm -f $HOME/.config/systemd/user/duckduckgoog.service
+    if [ -f $HOME/.config/systemd/user/duckduckgoog.service ]; then
+      rm -f $HOME/.config/systemd/user/duckduckgoog.service
+    fi
+
+    if [ -f /usr/bin/node ]; then
+      command_name="node"
+    else
+      command_name="nodejs"
+    fi
+
+    mv -n linux/default.target $HOME/.config/systemd/user/default.target
+
+    echo "*** Installing systemd service..."
+    sed -e "s REPLACE_INSTALL_DIR $install_dir " \
+        -e "s REPLACE_PORT $port " \
+        -e "s REPLACE_SEARCH_ENGINE $search_engine " \
+        -e "s REPLACE_COMMAND_NAME $command_name" \
+        < linux/systemd.service > $HOME/.config/systemd/user/duckduckgoog.service
+    systemctl --user enable duckduckgoog --now
+  else
+    echo "*** ERROR: Your system does not use the systemd init system. Local DuckDuckGoog only works with systemd."
+    exit 1;
   fi
-
-  mv -n linux/default.target $HOME/.config/systemd/user/default.target
-
-  echo "*** Installing systemd service..."
-  sed -e "s REPLACE_INSTALL_DIR $install_dir " \
-      -e "s REPLACE_PORT $port " \
-      -e "s REPLACE_SEARCH_ENGINE $search_engine " \
-      < linux/systemd.service > $HOME/.config/systemd/user/duckduckgoog.service
-  systemctl --user enable duckduckgoog --now
+else
+  echo "*** ERROR: Your operating system is not supported"
+  exit 1;
 fi
 
 
 sleep 1
-echo; echo
+echo "\n\n"
 echo "************************************************************************"
 echo "*** To complete installation, follow step 2 in the README on GitHub! ***"
 echo "************************************************************************"
-echo; echo
+echo "\n\n"

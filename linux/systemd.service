@@ -3,7 +3,7 @@ Description=Local DuckDuckGoog
 Documentation=https://github.com/evanrelf/duckduckgoog/
 
 [Service]
-ExecStart=/usr/bin/node REPLACE_INSTALL_DIR/app.js
+ExecStart=/usr/bin/REPLACE_COMMAND_NAME REPLACE_INSTALL_DIR/app.js
 Restart=always
 Environment=PORT=REPLACE_PORT
 Environment=SEARCH_ENGINE=REPLACE_SEARCH_ENGINE
